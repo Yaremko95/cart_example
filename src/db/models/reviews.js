@@ -3,16 +3,20 @@ import s from "sequelize";
 
 const { DataTypes } = s;
 
-const User = sequelize.define("users", {
+const Review = sequelize.define("reviews", {
   id: {
     primaryKey: true,
     autoIncrement: true,
     type: DataTypes.INTEGER,
   },
-  email: {
+  text: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  rate: {
     type: DataTypes.STRING,
     allowNull: false,
   },
 });
 
-export default User;
+export default Review;

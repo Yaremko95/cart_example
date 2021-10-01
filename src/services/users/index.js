@@ -1,14 +1,15 @@
 import express from "express";
 import db from "../../db/models/index.js";
+import sequelize from "sequelize";
 
-const { User } = db;
+const { Author } = db;
 const router = express.Router();
 
 router
   .route("/")
   .get(async (req, res, next) => {
     try {
-      const data = await User.findAll();
+      const data = await Author.findAll({});
       res.send(data);
     } catch (error) {
       console.log(error);
@@ -17,7 +18,29 @@ router
   })
   .post(async (req, res, next) => {
     try {
-      res.send("ok");
+      const data = await Author.bulkCreate([
+        {
+          email: "Tetiana",
+          country: "Ukraine",
+        },
+        {
+          email: "Ubeyt",
+          country: "Turkey",
+        },
+        {
+          email: "Diego",
+          country: "Italy",
+        },
+        {
+          email: "Stefano",
+          country: "Italy",
+        },
+        {
+          email: "Riccardo",
+          country: "Italy",
+        },
+      ]);
+      res.send(data);
     } catch (error) {
       console.log(error);
       next(error);
